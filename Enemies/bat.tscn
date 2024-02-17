@@ -1,0 +1,211 @@
+[gd_scene load_steps=27 format=3 uid="uid://b4ack32gfvxbf"]
+
+[ext_resource type="Texture2D" uid="uid://p7ug6lbg7as8" path="res://Shadows/SmallShadow.png" id="1_5ojpd"]
+[ext_resource type="Script" path="res://Enemies/bat.gd" id="1_ci3gl"]
+[ext_resource type="Texture2D" uid="uid://up8cvl0pbwj4" path="res://Enemies/Bat.png" id="1_l46ee"]
+[ext_resource type="Material" uid="uid://vnlxdbqe04ux" path="res://Enemies/bat.tres" id="2_rthx5"]
+[ext_resource type="PackedScene" uid="uid://b51e2geu5dp87" path="res://Hit and Hurt/hurtbox.tscn" id="3_rkfyo"]
+[ext_resource type="PackedScene" uid="uid://ytkswmm1m3rc" path="res://stats.tscn" id="5_daj6c"]
+[ext_resource type="PackedScene" uid="uid://dgtyvukumf0hv" path="res://Enemies/player_detection_zone.tscn" id="6_uvd38"]
+[ext_resource type="PackedScene" uid="uid://brxrjfosv7x6k" path="res://Hit and Hurt/hitbox.tscn" id="7_nivr7"]
+[ext_resource type="PackedScene" uid="uid://dm8cpsfr0hy4p" path="res://Hit and Hurt/soft_collision.tscn" id="8_16rbi"]
+[ext_resource type="PackedScene" uid="uid://c6xfij15boxn2" path="res://Enemies/wander_controller.tscn" id="9_e2m3a"]
+[ext_resource type="PackedScene" uid="uid://sx8cw80qmtp" path="res://damage_popup.tscn" id="11_drwix"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jgam"]
+atlas = ExtResource("1_l46ee")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fybu7"]
+atlas = ExtResource("1_l46ee")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qxaw"]
+atlas = ExtResource("1_l46ee")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j888"]
+atlas = ExtResource("1_l46ee")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vkac"]
+atlas = ExtResource("1_l46ee")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dcppc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jgam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fybu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qxaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j888")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vkac")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_du5vi"]
+radius = 4.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p36bq"]
+radius = 7.0
+height = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_05js8"]
+radius = 65.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vmxsl"]
+radius = 4.12311
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_701st"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_6c23b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mlowr"]
+resource_name = "start"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_g2j58"]
+resource_name = "stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t1s6t"]
+_data = {
+"RESET": SubResource("Animation_6c23b"),
+"start": SubResource("Animation_mlowr"),
+"stop": SubResource("Animation_g2j58")
+}
+
+[node name="Bat" type="CharacterBody2D"]
+collision_layer = 32
+script = ExtResource("1_ci3gl")
+
+[node name="AnimatedSpriteAftershadow" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(15.98, 1, 1, 1)
+self_modulate = Color(0.423529, 0.0352941, 0.239216, 0.407843)
+position = Vector2(0, 1)
+scale = Vector2(1.25, 1.125)
+sprite_frames = SubResource("SpriteFrames_dcppc")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.254965
+offset = Vector2(0, -12)
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_rthx5")
+sprite_frames = SubResource("SpriteFrames_dcppc")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.277979
+offset = Vector2(0, -12)
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_5ojpd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_du5vi")
+
+[node name="hurtbox" parent="." instance=ExtResource("3_rkfyo")]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_p36bq")
+
+[node name="Stats" parent="." instance=ExtResource("5_daj6c")]
+money = 1
+experience = 1
+max_hp = 2
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource("6_uvd38")]
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+shape = SubResource("CircleShape2D_05js8")
+debug_color = Color(0.980392, 0, 0.376471, 0.0156863)
+
+[node name="hitbox" parent="." instance=ExtResource("7_nivr7")]
+visible = false
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_vmxsl")
+
+[node name="SoftCollision" parent="." instance=ExtResource("8_16rbi")]
+visible = false
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource("CircleShape2D_701st")
+
+[node name="WanderController" parent="." instance=ExtResource("9_e2m3a")]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t1s6t")
+}
+
+[node name="AngerTimer" type="Timer" parent="."]
+
+[node name="DamagePopup" parent="." instance=ExtResource("11_drwix")]
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+[connection signal="no_hp" from="Stats" to="." method="_on_stats_no_hp"]
+[connection signal="timeout" from="AngerTimer" to="." method="_on_anger_timer_timeout"]
+
+[editable path="hurtbox"]
+[editable path="PlayerDetectionZone"]
+[editable path="hitbox"]
+[editable path="SoftCollision"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxx1io1tqn3ox"
+path="res://.godot/imported/Battle of Ice I.mp3-4a05530a2cde8efd0f4873416353b0ad.mp3str"
+
+[deps]
+
+source_file="res://Music and Sounds/Battle of Ice I.mp3"
+dest_files=["res://.godot/imported/Battle of Ice I.mp3-4a05530a2cde8efd0f4873416353b0ad.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

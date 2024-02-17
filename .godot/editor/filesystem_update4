@@ -1,0 +1,7 @@
+res://world.tscn
+res://WanderController.gd
+res://World/WhiteColor.gdshader
+res://Player/player.tscn
+res://World/grass.gd
+res://World/grass.tscn
+res://Hit and Hurt/hurtbox.tscn

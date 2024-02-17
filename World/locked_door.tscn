@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwagbgsy1rut7"]
+
+[ext_resource type="Texture2D" uid="uid://cby6fu2t23xow" path="res://Shadows/LargeShadow.png" id="1_17ixr"]
+[ext_resource type="Script" path="res://World/locked_door.gd" id="1_if4lp"]
+[ext_resource type="Texture2D" uid="uid://db4f7jgn1g6pj" path="res://World/Lockeddoor.png" id="1_o84yo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy33d"]
+size = Vector2(32, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u180"]
+size = Vector2(20, 34)
+
+[node name="LockedDoor" type="StaticBody2D"]
+script = ExtResource("1_if4lp")
+metadata/_edit_group_ = true
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(12, 10)
+texture = ExtResource("1_17ixr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(12, -2)
+texture = ExtResource("1_o84yo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12, 7)
+shape = SubResource("RectangleShape2D_gy33d")
+
+[node name="KeyArea" type="Area2D" parent="."]
+position = Vector2(0, -10)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KeyArea"]
+position = Vector2(12, 12)
+shape = SubResource("RectangleShape2D_1u180")
+debug_color = Color(0.509804, 0.564706, 0.337255, 0.419608)
+
+[connection signal="body_entered" from="KeyArea" to="." method="_on_key_area_body_entered"]

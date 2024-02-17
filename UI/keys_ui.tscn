@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://1w3dyotwmj0p"]
+
+[ext_resource type="Script" path="res://UI/keys_ui.gd" id="1_u2jyy"]
+[ext_resource type="Texture2D" uid="uid://bc45e0j2bd5ha" path="res://World/Items/key.png" id="2_e7gxj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_acgmr"]
+font_size = 10
+font_color = Color(0.847059, 0.65098, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="KeysUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -240.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u2jyy")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 13.0
+offset_bottom = 13.0
+texture = ExtResource("2_e7gxj")
+stretch_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = -2.0
+offset_right = 53.0
+offset_bottom = 24.0
+text = "0"
+label_settings = SubResource("LabelSettings_acgmr")

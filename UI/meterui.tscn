@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dprd2c6x4cpmc"]
+
+[ext_resource type="Script" path="res://UI/hpui.gd" id="1_usagl"]
+[ext_resource type="Texture2D" uid="uid://dxl63sm0owbh" path="res://UI/HeartUIFull.png" id="3_278ul"]
+
+[node name="HPUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 16.0
+script = ExtResource("1_usagl")
+metadata/_edit_group_ = true
+
+[node name="HeartUIFull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 11.0
+texture = ExtResource("3_278ul")
+expand_mode = 1
+stretch_mode = 1

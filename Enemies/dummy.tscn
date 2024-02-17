@@ -1,0 +1,94 @@
+[gd_scene load_steps=15 format=3 uid="uid://dnqxiwl68jlgc"]
+
+[ext_resource type="Script" path="res://Enemies/dummy.gd" id="1_go38u"]
+[ext_resource type="PackedScene" uid="uid://b51e2geu5dp87" path="res://Hit and Hurt/hurtbox.tscn" id="2_3xdjw"]
+[ext_resource type="PackedScene" uid="uid://ytkswmm1m3rc" path="res://stats.tscn" id="3_tmse8"]
+[ext_resource type="PackedScene" uid="uid://sx8cw80qmtp" path="res://damage_popup.tscn" id="4_0cn6i"]
+[ext_resource type="Texture2D" uid="uid://c7y68v526c6p2" path="res://Enemies/Dummy.png" id="5_b6ii4"]
+[ext_resource type="Texture2D" uid="uid://fy6yjxrc0ihj" path="res://Shadows/MediumShadow.png" id="6_i6blq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7416"]
+atlas = ExtResource("5_b6ii4")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg5h4"]
+atlas = ExtResource("5_b6ii4")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6c6b"]
+atlas = ExtResource("5_b6ii4")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ennvl"]
+atlas = ExtResource("5_b6ii4")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvd17"]
+atlas = ExtResource("5_b6ii4")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4c8o3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7416")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg5h4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6c6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ennvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvd17")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ay641"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3fpk"]
+radius = 5.0
+height = 12.0
+
+[node name="Dummy" type="StaticBody2D"]
+script = ExtResource("1_go38u")
+metadata/_edit_group_ = true
+
+[node name="DamagePopup" parent="." instance=ExtResource("4_0cn6i")]
+offset_top = -47.0
+offset_bottom = -21.0
+
+[node name="Stats" parent="." instance=ExtResource("3_tmse8")]
+max_hp = 999
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_4c8o3")
+frame_progress = 1.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("6_i6blq")
+
+[node name="hurtbox" parent="." instance=ExtResource("2_3xdjw")]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -14)
+shape = SubResource("CapsuleShape2D_ay641")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_a3fpk")
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="hurtbox"]

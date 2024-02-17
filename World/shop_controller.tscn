@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bghhbk82lgesb"]
+
+[ext_resource type="Script" path="res://ShopController.gd" id="1_gvhi5"]
+[ext_resource type="Texture2D" uid="uid://6id7662d6gs0" path="res://World/TradingShack.png" id="2_bdrpf"]
+
+[node name="ShopController" type="Node2D"]
+script = ExtResource("1_gvhi5")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Indicator for Editor" type="Sprite2D" parent="."]
+texture = ExtResource("2_bdrpf")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

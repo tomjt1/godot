@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6vyo883184f3"]
+
+[ext_resource type="Script" path="res://World/Items/swordItem.gd" id="1_ytc5h"]
+[ext_resource type="Texture2D" uid="uid://kxuv3qsfi0d4" path="res://World/Items/swordItem.png" id="2_rn0e4"]
+[ext_resource type="AudioStream" uid="uid://px6ybqqx3ndt" path="res://Music and Sounds/PowerUp.wav" id="3_klf8n"]
+
+[node name="SwordItem" type="Node2D"]
+script = ExtResource("1_ytc5h")
+price = 12
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rn0e4")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_klf8n")

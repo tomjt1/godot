@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj2qcgab5jh1t"]
+
+[ext_resource type="Script" path="res://World/Items/d_Daredevil.gd" id="1_o60mf"]
+[ext_resource type="Texture2D" uid="uid://4t3aicdg6j7l" path="res://Artifacts/daredevil.png" id="2_ja8gf"]
+[ext_resource type="Texture2D" uid="uid://cvn281xyqoiif" path="res://Artifacts/artifactBox.png" id="3_5cel7"]
+
+[node name="d_Daredevil" type="Node2D"]
+script = ExtResource("1_o60mf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+texture = ExtResource("2_ja8gf")
+
+[node name="SpriteBox" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+texture = ExtResource("3_5cel7")

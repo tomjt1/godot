@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjjivmb6pv2o2"]
+
+[ext_resource type="Script" path="res://Artifacts/a_FreshHoney.gd" id="1_xrm8f"]
+[ext_resource type="Texture2D" uid="uid://bqus7r48ew42r" path="res://Artifacts/freshhoney.png" id="2_3hrws"]
+[ext_resource type="Texture2D" uid="uid://cvn281xyqoiif" path="res://Artifacts/artifactBox.png" id="3_84mmx"]
+[ext_resource type="AudioStream" uid="uid://ds6feisq3mto7" path="res://Music and Sounds/Miss.wav" id="4_qdsyc"]
+
+[node name="A_FreshHoney" type="Node2D"]
+script = ExtResource("1_xrm8f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+texture = ExtResource("2_3hrws")
+
+[node name="SpriteBox" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+texture = ExtResource("3_84mmx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qdsyc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

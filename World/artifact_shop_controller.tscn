@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs1ahrkk1ed5c"]
+
+[ext_resource type="Script" path="res://World/artifact_shop_controller.gd" id="1_xfqpg"]
+[ext_resource type="Texture2D" uid="uid://6id7662d6gs0" path="res://World/TradingShack.png" id="2_oxo5l"]
+
+[node name="ShopController" type="Node2D"]
+modulate = Color(1, 0.509804, 0.509804, 1)
+script = ExtResource("1_xfqpg")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Indicator for Editor" type="Sprite2D" parent="."]
+texture = ExtResource("2_oxo5l")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

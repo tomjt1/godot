@@ -1,0 +1,119 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4u5ua8fr5c7o"]
+
+[ext_resource type="Texture2D" uid="uid://6id7662d6gs0" path="res://World/TradingShack.png" id="1_0yafe"]
+[ext_resource type="Script" path="res://World/shop.gd" id="1_5ibqp"]
+[ext_resource type="AudioStream" uid="uid://bag45pef521d0" path="res://Music and Sounds/Select.wav" id="3_8edpt"]
+[ext_resource type="PackedScene" uid="uid://dyxiwqvi8lgd" path="res://UI/tooltip_ui.tscn" id="4_dgbg7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5tqg"]
+size = Vector2(64, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s12vm"]
+size = Vector2(14.5, 23)
+
+[node name="Shop" type="Node2D"]
+position = Vector2(32, 8)
+script = ExtResource("1_5ibqp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0yafe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 6)
+collision_mask = 0
+
+[node name="Body" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_t5tqg")
+
+[node name="Areas" type="Node2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="AreaMiddle" type="Area2D" parent="Areas"]
+collision_layer = 0
+collision_mask = 18
+
+[node name="MiddleZone" type="CollisionShape2D" parent="Areas/AreaMiddle"]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_s12vm")
+
+[node name="AreaLeft" type="Area2D" parent="Areas"]
+collision_layer = 0
+collision_mask = 18
+
+[node name="LeftZone" type="CollisionShape2D" parent="Areas/AreaLeft"]
+position = Vector2(-28.25, 19)
+shape = SubResource("RectangleShape2D_s12vm")
+
+[node name="AreaRight" type="Area2D" parent="Areas"]
+collision_layer = 0
+collision_mask = 18
+
+[node name="RightZone" type="CollisionShape2D" parent="Areas/AreaRight"]
+position = Vector2(27, 19)
+shape = SubResource("RectangleShape2D_s12vm")
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="ItemLeft" type="Node2D" parent="Items"]
+position = Vector2(-21, -2)
+
+[node name="ItemMiddle" type="Node2D" parent="Items"]
+position = Vector2(0, -1)
+
+[node name="ItemRight" type="Node2D" parent="Items"]
+position = Vector2(21, -2)
+
+[node name="Labels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -9.0
+offset_right = 36.0
+offset_bottom = 31.0
+
+[node name="LabelLeft" type="Label" parent="Labels"]
+visible = false
+layout_mode = 0
+offset_left = -22.0
+offset_top = -32.0
+offset_right = -12.0
+offset_bottom = -6.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="LabelMiddle" type="Label" parent="Labels"]
+visible = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = -31.0
+offset_right = 9.0
+offset_bottom = -5.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="LabelRight" type="Label" parent="Labels"]
+visible = false
+layout_mode = 0
+offset_left = 20.0
+offset_top = -32.0
+offset_right = 30.0
+offset_bottom = -6.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="Purchase" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8edpt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TooltipUI" parent="CanvasLayer" instance=ExtResource("4_dgbg7")]
+
+[connection signal="area_entered" from="Areas/AreaMiddle" to="." method="_on_area_middle_area_entered"]
+[connection signal="body_entered" from="Areas/AreaMiddle" to="." method="_on_area_middle_body_entered"]
+[connection signal="body_exited" from="Areas/AreaMiddle" to="." method="_on_area_middle_body_exited"]
+[connection signal="area_entered" from="Areas/AreaLeft" to="." method="_on_area_left_area_entered"]
+[connection signal="body_entered" from="Areas/AreaLeft" to="." method="_on_area_left_body_entered"]
+[connection signal="body_exited" from="Areas/AreaLeft" to="." method="_on_area_left_body_exited"]
+[connection signal="area_entered" from="Areas/AreaRight" to="." method="_on_area_right_area_entered"]
+[connection signal="body_entered" from="Areas/AreaRight" to="." method="_on_area_right_body_entered"]
+[connection signal="body_exited" from="Areas/AreaRight" to="." method="_on_area_right_body_exited"]

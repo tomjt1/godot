@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3rorigmp2cpo"]
+
+[ext_resource type="Script" path="res://World/Items/keyItem.gd" id="1_ms3ix"]
+[ext_resource type="Texture2D" uid="uid://bc45e0j2bd5ha" path="res://World/Items/key.png" id="2_ystd5"]
+
+[node name="KeyItem" type="Node2D"]
+script = ExtResource("1_ms3ix")
+price = 6
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ystd5")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]

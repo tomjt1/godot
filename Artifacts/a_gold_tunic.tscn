@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnf7vhx3ikcu0"]
+
+[ext_resource type="Script" path="res://Artifacts/A_GoldTunic.gd" id="1_cqmyw"]
+[ext_resource type="Texture2D" uid="uid://bborouvtjors2" path="res://Artifacts/goldtunic.png" id="2_t6h7f"]
+[ext_resource type="Texture2D" uid="uid://cvn281xyqoiif" path="res://Artifacts/artifactBox.png" id="3_kfs2g"]
+
+[node name="A_GoldTunic" type="Node2D"]
+script = ExtResource("1_cqmyw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+texture = ExtResource("2_t6h7f")
+
+[node name="SpriteBox" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+texture = ExtResource("3_kfs2g")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

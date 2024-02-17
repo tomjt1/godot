@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://clil8u6wka28b"]
+
+[ext_resource type="Script" path="res://World/Items/extraHeart.gd" id="1_1at8c"]
+[ext_resource type="Texture2D" uid="uid://vwm6m76pyhg7" path="res://World/Items/extraHeart.png" id="2_nufav"]
+[ext_resource type="AudioStream" uid="uid://px6ybqqx3ndt" path="res://Music and Sounds/PowerUp.wav" id="3_5euc5"]
+
+[node name="extraHeart" type="Node2D"]
+script = ExtResource("1_1at8c")
+price = 8
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nufav")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5euc5")

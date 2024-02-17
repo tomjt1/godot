@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlcvi3fewtyd1"]
+
+[ext_resource type="Script" path="res://Artifacts/artifacts.gd" id="1_5ldx4"]
+[ext_resource type="PackedScene" uid="uid://bnf7vhx3ikcu0" path="res://Artifacts/a_gold_tunic.tscn" id="2_y3de0"]
+[ext_resource type="PackedScene" uid="uid://bjjivmb6pv2o2" path="res://Artifacts/a_FreshHoney.tscn" id="3_6lvrc"]
+[ext_resource type="PackedScene" uid="uid://lbd5ycdmwg75" path="res://Artifacts/a_SlipNSlide.tscn" id="4_mp6ad"]
+[ext_resource type="PackedScene" uid="uid://dvdph0jnkc0od" path="res://Artifacts/a_daredevil.tscn" id="5_ilorc"]
+
+[node name="Artifacts" type="Node2D"]
+script = ExtResource("1_5ldx4")
+
+[node name="A_SlipNSlide" parent="." instance=ExtResource("4_mp6ad")]
+
+[node name="A_GoldTunic" parent="." instance=ExtResource("2_y3de0")]
+
+[node name="A_FreshHoney" parent="." instance=ExtResource("3_6lvrc")]
+
+[node name="A_Daredevil" parent="." instance=ExtResource("5_ilorc")]
+
+[connection signal="artifact_disabled" from="A_SlipNSlide" to="." method="_on_a_slip_n_slide_artifact_disabled"]
+[connection signal="artifact_enabled" from="A_SlipNSlide" to="." method="_on_a_slip_n_slide_artifact_enabled"]
+[connection signal="artifact_disabled" from="A_GoldTunic" to="." method="_on_a_gold_tunic_artifact_disabled"]
+[connection signal="artifact_enabled" from="A_GoldTunic" to="." method="_on_a_gold_tunic_artifact_enabled"]
+[connection signal="artifact_enabled" from="A_FreshHoney" to="." method="_on_a_fresh_honey_artifact_enabled"]

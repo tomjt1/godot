@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3qrnv4x0imf2"]
+
+[ext_resource type="AudioStream" uid="uid://b7t02i15h7hso" path="res://Music and Sounds/Coinage.wav" id="1_6w2ty"]
+[ext_resource type="Script" path="res://Effects/money_get_sound.gd" id="1_b10ga"]
+
+[node name="MoneyGetSound" type="AudioStreamPlayer"]
+stream = ExtResource("1_6w2ty")
+autoplay = true
+script = ExtResource("1_b10ga")

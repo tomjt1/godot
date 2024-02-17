@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://iatcxhudg88x"]
+
+[ext_resource type="Script" path="res://camera_2d.gd" id="1_ve82b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dut2"]
+size = Vector2(320, 180)
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2(160, 90)
+limit_left = -500
+limit_top = -500
+limit_right = 500
+limit_bottom = 500
+script = ExtResource("1_ve82b")
+
+[node name="Limits" type="Node" parent="."]
+
+[node name="TopLeft" type="Marker2D" parent="Limits"]
+
+[node name="BottomRight" type="Marker2D" parent="Limits"]
+position = Vector2(320, 180)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_3dut2")
+debug_color = Color(0.196078, 0.819608, 0.470588, 0.0313726)

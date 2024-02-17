@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6de0alqhi240"]
+
+[ext_resource type="Script" path="res://World/Potion.gd" id="1_4cf23"]
+[ext_resource type="Texture2D" uid="uid://bgknmbnsgqdf7" path="res://World/Items/potion.png" id="2_lqrof"]
+[ext_resource type="AudioStream" uid="uid://ds6feisq3mto7" path="res://Music and Sounds/Miss.wav" id="3_vb7uj"]
+
+[node name="Potion" type="Node2D"]
+script = ExtResource("1_4cf23")
+price = 3
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lqrof")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vb7uj")

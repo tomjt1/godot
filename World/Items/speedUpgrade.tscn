@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c56les8cc05du"]
+
+[ext_resource type="Script" path="res://World/Items/speedUpgrade.gd" id="1_h2mro"]
+[ext_resource type="Texture2D" uid="uid://ciujyb3xwt7fo" path="res://World/Items/speedUpgradeDummyImage.png" id="2_n2uxt"]
+[ext_resource type="AudioStream" uid="uid://px6ybqqx3ndt" path="res://Music and Sounds/PowerUp.wav" id="3_jyfj0"]
+
+[node name="speedUpgrade" type="Node2D"]
+script = ExtResource("1_h2mro")
+price = 7
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n2uxt")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jyfj0")

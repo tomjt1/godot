@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbl8pahbxl5v4"]
+
+[ext_resource type="AudioStream" uid="uid://gkgft6jekpnx" path="res://Music and Sounds/Blocked.wav" id="1_fc6a0"]
+[ext_resource type="Script" path="res://Player/player_hurt_sound.gd" id="2_bwvy6"]
+
+[node name="BlockedDamageSound" type="AudioStreamPlayer"]
+stream = ExtResource("1_fc6a0")
+autoplay = true
+script = ExtResource("2_bwvy6")

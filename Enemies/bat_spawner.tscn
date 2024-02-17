@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://duwe0fywpkupy"]
+
+[ext_resource type="Script" path="res://Enemies/bat_spawner.gd" id="1_viul2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pd8gu"]
+size = Vector2(160, 85)
+
+[node name="BatSpawner" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_viul2")
+SPAWN_TIME = 10
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(80, 43)
+shape = SubResource("RectangleShape2D_pd8gu")
+debug_color = Color(0.960784, 0.176471, 0.258824, 0.466667)
+
+[node name="DifficultyTimer" type="Timer" parent="."]
+wait_time = 180.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="DifficultyTimer" to="." method="_on_difficulty_timer_timeout"]

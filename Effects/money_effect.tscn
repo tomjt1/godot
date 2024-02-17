@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4lmfs5b7kqu0"]
+
+[ext_resource type="Script" path="res://Effects/money_effect.gd" id="1_2v55j"]
+[ext_resource type="Texture2D" uid="uid://dvheuqoschqpo" path="res://Effects/MoneyEffect.png" id="1_eglt1"]
+[ext_resource type="Texture2D" uid="uid://ds37mvobkbnpr" path="res://Shadows/SmallestShadow.png" id="3_avh5p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8836j"]
+radius = 6.0
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5nqi"]
+atlas = ExtResource("1_eglt1")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcwiv"]
+atlas = ExtResource("1_eglt1")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7rfx"]
+atlas = ExtResource("1_eglt1")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8jo6"]
+atlas = ExtResource("1_eglt1")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e61ec"]
+atlas = ExtResource("1_eglt1")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nlchf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5nqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcwiv")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_c7rfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8jo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e61ec")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Money" type="Area2D"]
+collision_layer = 0
+collision_mask = 18
+script = ExtResource("1_2v55j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_8836j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nlchf")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.75, 5)
+texture = ExtResource("3_avh5p")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://lbd5ycdmwg75"]
+
+[ext_resource type="Script" path="res://Artifacts/a_SlipNSlide.gd" id="1_g0lxy"]
+[ext_resource type="Texture2D" uid="uid://cciaguu1bglmr" path="res://Artifacts/SlipnSlide.png" id="2_k77hd"]
+[ext_resource type="Texture2D" uid="uid://cvn281xyqoiif" path="res://Artifacts/artifactBox.png" id="3_4f26t"]
+
+[node name="A_SlipNSlide" type="Node2D"]
+script = ExtResource("1_g0lxy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+texture = ExtResource("2_k77hd")
+
+[node name="SpriteBox" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+texture = ExtResource("3_4f26t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
